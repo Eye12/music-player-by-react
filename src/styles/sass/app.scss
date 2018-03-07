@@ -1,0 +1,243 @@
+@import 'variables',
+'mixin',
+'placeholder',
+'fonts',
+'compass/css3',
+'compass/utilities/general',
+'compass/typography';
+
+
+
+
+
+/*----------------all----------------*/
+
+span {
+  @include inline-block;
+}
+
+html,
+body,
+#app {
+  @extend %width-height;
+}
+
+
+
+
+/*----------------header----------------*/
+
+.header {
+  @extend %width;
+  height: $header-h;
+  background-color: $all-bg-color;
+  border-bottom: 1px solid $header-border-color;
+  @at-root .icon-img,
+  .words {
+    @include float(left);
+  }
+  @at-root .icon-img {
+    width: auto;
+    height: $icon-img-h;
+    margin: ($header-h - $icon-img-h) / 2 1%;
+  }
+  @at-root .words {
+    line-height: $header-h;
+    font-size: 95%;
+    &:after {
+      @include legacy-pie-clearfix;
+    }
+  }
+}
+
+/*----------------single----------------*/
+
+.single {
+  @extend %width;
+  @include box-sizing(border-box);
+  padding: 0 25%;
+  height: $single-h;
+  @at-root .left,
+  .right {
+    @include inline-block;
+    width: 50%;
+    height: inherit;
+  } 
+
+  //left
+  @at-root .left {
+    ol {
+      @extend %width;
+      height: $ol-h;
+      @include no-bullets;
+      margin: 0;
+      padding: 0;
+      margin-top: ($single-h - $ol-h) / 2;
+      li {
+        margin-bottom: 4%;
+      }
+      @at-root .link-list {
+        @include unstyled-link;
+        color: $normal-color;
+        @extend %cursor;
+        &:hover {
+          color: $hover-color;
+        }
+      }
+      @at-root .link-list,
+      .artist,
+      .time-voice {
+        font-size: 80%;
+      }
+      @at-root .music-title {
+        font-size: 120%;
+      }
+      @at-root .time-voice {
+        @extend %cursor;
+        &:hover .voice-range {
+          display: inline-block;
+        }
+        @at-root .voice-img {
+          width: $voice-img-w;
+          height: $voice-img-h;
+          background-image: url('../../images/icon/voice.png');
+          background-size: 100%;
+        }
+        @at-root .voice-range {
+          @include position;
+          width: $voice-range-w;
+          height: $voice-range-h;
+          background-color: $range-bg-color;
+          margin-top: -26px;
+          display: none;
+          @at-root .voice-range-in {
+            @include position(absolute);
+            bottom: 0;
+            @extend %width;
+            background-color: $range-color;
+          }
+        }
+      }
+      @at-root .progress-bar {
+        @include position;
+        @extend %width;
+        height: $progress-bar-h;
+        background-color: $range-bg-color;
+        @extend %cursor;
+        @at-root .progress-in {
+          @include position(absolute);
+          left: 0;
+          top: 0;
+          @extend %height;
+          background-color: $range-color;
+        }
+      }
+      @at-root .icon-imgs {
+        img:not(.icon-circle),
+        .play,
+        .pause {
+          @include float(left);
+          width: $icon-img-w;
+          height: $icon-img-h;
+          @extend %cursor;
+        }
+        .play {
+          background-image: url('../../images/icon/play.png');
+        }
+        .pause {
+          background-image: url('../../images/icon/pause.png');
+        }
+        .play,
+        .pause {
+          background-size: 100%;
+        }
+        .icon-circle {
+          width: $icon-circle-w;
+          height: $icon-circle-h;
+          @include float(right);
+          @extend %cursor;
+          margin-top: 15px;
+          &:after {
+            @include legacy-pie-clearfix;
+          }
+        }
+      }
+    }
+  } 
+
+
+  // right 
+  @at-root .right {
+    @at-root .cover-img {
+      width: $cover-img-w;
+      height: $cover-img-h;
+      @include border-radius(50%);
+      @include float(right);
+      margin-top: ($single-h - $cover-img-h) / 2;
+      &:after {
+        @include legacy-pie-clearfix;
+      }
+    }
+  }
+}
+
+
+/*----------------list----------------*/
+
+.list {
+  @include no-bullets;
+  padding: 0;
+  margin: 0;
+  li {
+    padding: $li-pad;
+    border-bottom: 1px dashed $li-bt-color;
+    @extend %cursor;
+    &:hover {
+      color: $hover-color;
+    }
+    @at-root .cross {
+        @include float(right);
+        width: $cross-w;
+        height: $cross-h;
+        &:hover::after {
+          color: $cross-color2;
+        }
+        &::after {
+          font-family: 'cross';
+          color: $cross-color;
+          content: '\e617';
+          @include legacy-pie-clearfix;
+        }
+    }
+  }
+}
+
+
+.link {
+  @include float(right);
+  margin-top: 1%;
+  width: $back-w;
+  @include inline-block;
+  text-align: center;
+  @at-root .icon-back {
+    @extend %width;
+    height: auto;
+    &:after {
+      font-family: 'back';
+      font-size: 100%;
+      content:'\e614';
+      color: $current-item-color;
+    }
+  }
+  @at-root .back {
+    @extend %width;
+    height: auto;
+    text-align: center;
+    font-size: 80%;
+    color: $current-item-color;
+  }
+}
+
+.current-item {
+  color: $current-item-color;
+}

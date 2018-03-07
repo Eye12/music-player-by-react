@@ -1,0 +1,16 @@
+%width {
+	width: 100%;
+}
+
+%height {
+	height: 100%;
+}
+
+%width-height {
+	@extend %width;
+	@extend %height;
+}
+
+%cursor {
+	cursor: pointer !important;
+}
